@@ -1,0 +1,2 @@
+# badmintony
+Sharable badminton scoreboard
