@@ -11,8 +11,8 @@ export class Player extends Base {
         this.won = won;
     }
 
-    toString() {
-        return this.name
+    static fromObj(obj) {
+        return new Player(obj)
     }
 
     toObj() {
@@ -23,14 +23,18 @@ export class Player extends Base {
         return obj
     }
 
-    toJSON() {
-        let obj = this.toObj();
-        return JSON.stringify(obj);
+    toString() {
+        return this.name
     }
 }
 
 
 // let a = new Player({name: 'tony'});
-// console.log("\n\nplayer\n", a);
-// console.log("\n\nplayer.toObj()\n", a.toObj());
-// console.log("\n\nplayer.toJSON()\n", a.toJSON());
+// console.log(a);
+// let b = a.toObj();
+// console.log(b);
+// let c = Player.fromObj(b);
+// console.log(c);
+// // console.log("\n\nplayer\n", b);
+// // console.log("\n\nplayer.toObj()\n", a.toObj());
+// // console.log("\n\nplayer.toJSON()\n", a.toJSON());
