@@ -74,7 +74,7 @@ export class List<T> {
         let items: T[] = [];
         let indicesList = typeof indices === "number" ? [indices] : indices;
 
-        if (!indices) {
+        if (Array.isArray(indices) && indices.length === 0) {
             return null
         }
 
@@ -197,6 +197,10 @@ export class List<T> {
         }
     }
 
+    replaceAtIndex(index: number, item:T): void {
+        this.list[index] = item;
+    }
+
 }
 
 // let b = new List<any>([{ id: 5, name: "Bob", age: 20 }, { id: 7, name: "Sam", age: 19 }, { id: 3, name: "Lucy", age: 20 }]);
@@ -209,7 +213,7 @@ export class List<T> {
 // // console.log(b.getIndicesFromFieldValue("age", 20, 2));
 // // console.log(b.getIndexFromFieldValue("age", 20));
 // // console.log(b.getIndexFromId(3));
-// // console.log(b.getByIndex(2));
+// console.log(b.getByIndex(0));
 // // console.log(b.getByIndex([0, 2]));
 // // console.log(b.getByIndex([0, 2], 1));
 // // console.log(b.getByIndex([9], 1));

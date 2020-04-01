@@ -1,11 +1,11 @@
-import {Base} from "./base";
+import { Base } from "./base";
 
 export class Player extends Base {
     public name: string;
     public played: number;
     public won: number;
-    constructor ({id = undefined, created = undefined, lastUpdated = undefined, name, played = 0, won = 0}) {
-        super({id: id, created: created, lastUpdated: lastUpdated});
+    constructor({ id = undefined, created = undefined, lastUpdated = undefined, name, played = 0, won = 0 }) {
+        super({ id: id, created: created, lastUpdated: lastUpdated });
         this.name = name;
         this.played = played;
         this.won = won;
@@ -25,6 +25,17 @@ export class Player extends Base {
 
     toString() {
         return this.name
+    }
+
+    isValidName(name: string) {
+        return (name && typeof name === "string" && name.length >= 1 && name.length < 16)
+    }
+
+    setName(newName: string) {
+        if (this.isValidName) {
+            this.name = newName;
+            this.lastUpdated = new Date();
+        }
     }
 }
 

@@ -2,7 +2,7 @@ import {Base} from "./base";
 import {Player} from "./player";
 import {List} from "./list";
 
-class Team extends Base {
+export class Team extends Base {
 
     public players: List<Player>;
     public played: number;
@@ -18,7 +18,8 @@ class Team extends Base {
     static fromObj(obj, allPlayersList: List<Player>): Team {
         let playerIds = obj.players;
         let players = allPlayersList.getByIds(playerIds);
-        return new Team({players: players, id: obj.id, created: obj.created, lastUpdated: obj.lastUpdated})
+        obj['players'] = players;
+        return new Team(obj)
     }
 
     toObj() {
