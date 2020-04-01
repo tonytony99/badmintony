@@ -1,6 +1,6 @@
 import {Base} from "./base";
 
-class Player extends Base {
+export class Player extends Base {
     public name: string;
     public played: number;
     public won: number;
@@ -30,7 +30,7 @@ class Player extends Base {
 }
 
 
-let a = new Player({name: 'tony'});
-console.log("\n\nplayer\n", a);
-console.log("\n\nplayer.toObj()\n", a.toObj());
-console.log("\n\nplayer.toJSON()\n", a.toJSON());
+// let a = new Player({name: 'tony'});
+// console.log("\n\nplayer\n", a);
+// console.log("\n\nplayer.toObj()\n", a.toObj());
+// console.log("\n\nplayer.toJSON()\n", a.toJSON());
