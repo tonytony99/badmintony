@@ -1,15 +1,11 @@
 import { Base } from "./base";
-// import { Player, testPlayers } from "./player";
+import { Timable } from "./timable";
 
 import { List } from "./list";
-import { Team, testTeams } from "./team";
-// import { Match, testMatches } from "./match";
+import { Team } from "./team";
 
-// import Player = require("./player");
 import { Player } from "./player";
-import Match = require("./match");
-
-import { Timable } from "./timable";
+import { Match } from "./match";
 
 export class Session extends Timable {
     public players: List<Player>;
@@ -112,24 +108,24 @@ export class Session extends Timable {
 
 }
 
-let testPlayer1 = new Player({name: 'A 1'});
-let testPlayer2 = new Player({name: 'B 2'});
-let testPlayer3 = new Player({name: 'C 3'});
-let testPlayer4 = new Player({name: 'D 4'});
-let testPlayer5 = new Player({name: 'E 5'});
-let testPlayers = [testPlayer1, testPlayer2, testPlayer3, testPlayer4, testPlayer5];
-let testPlayersList = new List<Player>(testPlayers);
-let testTeamsList = new List<Team>([testTeams[0], testTeams[1]]);
-let testMatch = new Match({ teams: testTeamsList });
-let testMatches = new List<Match>([testMatch]);
-let testSession = new Session({players: new List<Player>(testPlayers), teams: new List<Team>(testTeams), matches: testMatches});
-testSession.begin();
-// console.log(testSession.matches.getByIndex(0).teams.getByIndex(0).players);
-console.log(testSession);
-// console.log(testSession.toObj());
-// console.log(Session.fromObj(testSession.toObj()).matches.getByIndex(0).teams.getByIndex(0).players);
-// console.log(testSession.toJSON());
-console.log(Session.fromJSON(testSession.toJSON()));
+// let testPlayer1 = new Player({name: 'A 1'});
+// let testPlayer2 = new Player({name: 'B 2'});
+// let testPlayer3 = new Player({name: 'C 3'});
+// let testPlayer4 = new Player({name: 'D 4'});
+// let testPlayer5 = new Player({name: 'E 5'});
+// let testPlayers = [testPlayer1, testPlayer2, testPlayer3, testPlayer4, testPlayer5];
+// let testPlayersList = new List<Player>(testPlayers);
+// let testTeamsList = new List<Team>([testTeams[0], testTeams[1]]);
+// let testMatch = new Match({ teams: testTeamsList });
+// let testMatches = new List<Match>([testMatch]);
+// let testSession = new Session({players: new List<Player>(testPlayers), teams: new List<Team>(testTeams), matches: testMatches});
+// testSession.begin();
+// // console.log(testSession.matches.getByIndex(0).teams.getByIndex(0).players);
+// console.log(testSession);
+// // console.log(testSession.toObj());
+// // console.log(Session.fromObj(testSession.toObj()).matches.getByIndex(0).teams.getByIndex(0).players);
+// // console.log(testSession.toJSON());
+// console.log(Session.fromJSON(testSession.toJSON()));
 
 
 
