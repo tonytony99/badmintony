@@ -58,8 +58,8 @@ export class Match extends Timable {
             games.add(Game.fromObj(game, allPlayersList));
         }
         let teams = new List<Team>([]);
-        for (let team of obj['teams']) {
-            teams.add(allTeamsList.getById(team.id));
+        for (let teamId of obj['teams']) {
+            teams.add(allTeamsList.getById(teamId));
         }
         obj['games'] = games;
         obj['teams'] = teams;
@@ -73,10 +73,8 @@ export class Match extends Timable {
         for (let gameIndex = 0; gameIndex < this.games.length(); gameIndex++) {
             obj['games'].push((<Game>this.games.getByIndex(gameIndex)).toObj());
         }
-        obj['teams'] = [];
-        for (let teamIndex of [0, 1]) {
-            obj['teams'].push((<Team>this.teams.getByIndex(teamIndex)).toObj());
-        }
+
+        obj['teams'] = this.teams.getFieldArray("id");
         for (let field of ['score', 'winner', 'firstTo', 'upperLimit', 'bestOf', 'began', 'ended', 'duration']) {
             obj[field] = this[field];
         }

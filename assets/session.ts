@@ -44,6 +44,9 @@ export class Session extends Timable {
         return new Session(obj)
     }
 
+    static fromJSON(str) {
+        return Session.fromObj(JSON.parse(str))
+    }
 
 
     toObj() {
@@ -54,6 +57,9 @@ export class Session extends Timable {
         return obj
     }
 
+    toJSON() {
+        return JSON.stringify(this.toObj(), null, 4)
+    }
 
     getMatch(matchId: number): Match | null {
         return this.matches.getById(matchId);
@@ -102,8 +108,12 @@ export class Session extends Timable {
 
 let testSession = new Session({players: new List<Player>(testPlayers), teams: new List<Team>(testTeams), matches: new List<Match>(testMatches)});
 testSession.begin();
+// console.log(testSession.matches.getByIndex(0).teams.getByIndex(0).players);
 console.log(testSession);
 // console.log(testSession.toObj());
-console.log(Session.fromObj(testSession.toObj()));
+// console.log(Session.fromObj(testSession.toObj()).matches.getByIndex(0).teams.getByIndex(0).players);
+// console.log(testSession.toJSON());
+console.log(Session.fromJSON(testSession.toJSON()));
+
 
 
