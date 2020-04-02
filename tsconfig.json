@@ -3,6 +3,6 @@
         "module": "none",
         "target": "ES6",
         "outDir": "assets/dist",
-        "rootDir": "assets/src"
+        "rootDir": "assets"
     }
 }

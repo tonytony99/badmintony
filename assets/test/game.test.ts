@@ -26,6 +26,7 @@ test('should default to no points or winner', () => {
     expect(testGame.winner).toEqual(null);
 });
 
+
 test('should populate court correctly', () => {
     expect(testGame.court[0]).toEqual(testPlayers.getByIndex([0, 1]));
     expect(testGame.court[1]).toEqual(testPlayers.getByIndex([2, 3]));

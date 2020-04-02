@@ -9,7 +9,7 @@ import { Timable } from "./timable";
 
 
 
-class Match extends Timable {
+export class Match extends Timable {
 
     public score: number[];
     public winner: number;
@@ -121,6 +121,16 @@ class Match extends Timable {
         }
     }
 
+    resetScore() {
+        let firstGame = <Game>this.games.getByIndex(0);
+        this.score = [0, 0];
+        this.winner = null;
+        this.games.empty();
+        firstGame.resetScore();
+        this.games.add(firstGame);
+        this.game = firstGame;
+    }
+
     containsPlayer(player: Player) {
         for (let teamIndex of [0, 1]) {
             if ((<Team>this.teams.getByIndex(teamIndex)).players.contains(player)) {
@@ -148,7 +158,6 @@ class Match extends Timable {
 
 }
 
-export = Match;
 
 let testTeamsList = new List<Team>([testTeams[0], testTeams[1]]);
 let testMatch = new Match({ teams: testTeamsList });
