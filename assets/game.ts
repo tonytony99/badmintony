@@ -1,5 +1,5 @@
 import { Base } from "./base";
-import { Player } from "./player";
+import { Player, testPlayers } from "./player";
 import { List } from "./list";
 import { Team } from "./team";
 
@@ -38,8 +38,27 @@ export class Game extends Base {
         for (let field of ['score', 'winner', 'firstTo', 'upperLimit', 'servingTeam', 'servingSide']) {
             obj[field] = this[field];
         }
-        return obj
+        return JSON.parse(JSON.stringify(obj))
     }
+
+    copy(): Game {
+        return new Game({
+            score: JSON.parse(JSON.stringify(this.score)),
+            winner: this.winner,
+            firstTo: this.firstTo,
+            upperLimit: this.upperLimit,
+
+            servingTeam: this.servingTeam,
+            servingSide: this.servingSide,
+
+            court: [
+                this.court[0].shallowCopy(),
+                this.court[1].shallowCopy()
+            ]
+        })
+    }
+
+
 
     getOppositeTeam(team: number): number {
         return 1 - team
@@ -91,6 +110,12 @@ export class Game extends Base {
         }        
     }
 
+    resetScore() {
+        this.score.splice(0, 2);
+        this.score.push(0, 0);
+        this.winner = null;
+    }
+
     setService(serviceTeam: number, serviceSide: number) {
         this.servingTeam = serviceTeam;
         this.servingSide = serviceSide;
@@ -113,11 +138,8 @@ export class Game extends Base {
 }
 
 
-
-
-let players = new List<Player>([new Player({name: "Tom"}), new Player({name: "Sam"}), new Player({name: "Jed"}), new Player({name: "Rik"})]);
-// console.log(players);
-let game = new Game(
+let players = new List<Player>(testPlayers);
+export const testGame = new Game(
     {
         court: [
             players.getByIndex([0, 1]),
@@ -125,16 +147,18 @@ let game = new Game(
         ]
     }
 )
-console.log(game.toString());
-// console.log(game.court[0].getByIndex(0));
-console.log("--------------");
-// console.log(game.court[1]);
-for (let i = 0; i < 50; i ++) {
-    game.addPoint(Math.round(Math.random()));
-    console.log(game.toString());
-    console.log("--------------");
-}
-// game.addPoint(0);
+
+
+// console.log(game.toString());
+// // console.log(game.court[0].getByIndex(0));
+// console.log("--------------");
+// // console.log(game.court[1]);
+// for (let i = 0; i < 50; i ++) {
+//     game.addPoint(Math.round(Math.random()));
+//     console.log(game.toString());
+//     console.log("--------------");
+// }
+// // game.addPoint(0);
 
 // console.log(game.court);
 // console.log(game.toString());

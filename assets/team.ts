@@ -1,6 +1,6 @@
-import {Base} from "./base";
-import {Player} from "./player";
-import {List} from "./list";
+import { Base } from "./base";
+import { Player, testPlayers } from "./player";
+import { List } from "./list";
 
 export class Team extends Base {
 
@@ -8,8 +8,8 @@ export class Team extends Base {
     public played: number;
     public won: number;
 
-    constructor ({id = undefined, created = undefined, lastUpdated = undefined, played = 0, won = 0, players}) {
-        super({id: id, created: created, lastUpdated: lastUpdated});
+    constructor({ id = undefined, created = undefined, lastUpdated = undefined, played = 0, won = 0, players }) {
+        super({ id: id, created: created, lastUpdated: lastUpdated });
         this.players = players;
         this.played = played;
         this.won = won;
@@ -36,14 +36,14 @@ export class Team extends Base {
         return playerNames.join("/");
     }
 
-    
-
-
 }
 
 // // console.log("D")
-// let players = new List<Player>([new Player({name: "Tom", id: 89}),  new Player({name: "Samuel", id: 88})]);
-// let d = new Team({players: players.getByIndex([0, 1])});
+let testPlayersList = new List<Player>(testPlayers);
+export const testTeams = [
+    new Team({ players: testPlayersList.getByIndex([0, 1]) }),
+    new Team({ players: testPlayersList.getByIndex([2, 3]) })
+]
 // // let e = Team.fromObj({players: [89, 88]}, players);
 // console.log(d);
 // console.log(d.toObj());

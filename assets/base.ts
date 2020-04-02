@@ -2,25 +2,25 @@ export class Base {
     public id: number;
     public created: Date;
     public lastUpdated: Date;
-    
-    constructor({id = Math.floor(Math.random() * 10 ** 8), created = new Date(), lastUpdated = new Date()}) {
+
+    constructor({ id = Math.floor(Math.random() * 10 ** 8), created = new Date(), lastUpdated = new Date() }) {
         this.id = id;
-        this.created = created;
-        this.lastUpdated = lastUpdated;
+
+        if (typeof created === "string" || typeof created === "number")
+            this.created = new Date(created);
+        else
+            this.created = created;
+        if (typeof lastUpdated === "string" || typeof lastUpdated === "number")
+            this.lastUpdated = new Date(lastUpdated);
+        else
+            this.lastUpdated = lastUpdated;
     }
 
     toObj() {
-        let obj = {};
-        for (let field of ['id', 'created', 'lastUpdated']) {
-            obj[field] = this[field];
+        let obj = { id: this.id };
+        for (let dateField of ['created', 'lastUpdated']) {
+            obj[dateField] = this[dateField].toISOString();
         }
         return obj
     }
-
-
-    // display(): void{
-    //     console.log(this.name);
-    // }
-
-    // abstract find(string): Person;
 }

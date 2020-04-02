@@ -40,7 +40,13 @@ export class Player extends Base {
 }
 
 
-// let a = new Player({name: 'tony'});
+let testPlayer1 = new Player({name: 'A 1'});
+let testPlayer2 = new Player({name: 'B 2'});
+let testPlayer3 = new Player({name: 'C 3'});
+let testPlayer4 = new Player({name: 'D 4'});
+let testPlayer5 = new Player({name: 'E 5'});
+export const testPlayers = [testPlayer1, testPlayer2, testPlayer3, testPlayer4, testPlayer5];
+
 // console.log(a);
 // let b = a.toObj();
 // console.log(b);

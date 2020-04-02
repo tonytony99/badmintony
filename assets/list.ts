@@ -1,4 +1,6 @@
-export class List<T> {
+import { Base } from "./base";
+
+export class List<T extends Base> {
     public list: T[];
     constructor(list?: T[]) {
         this.list = typeof list === "undefined" ? [] : list;
@@ -84,8 +86,11 @@ export class List<T> {
             }
             if (index >= 0 && index < this.list.length)
                 items.push(this.list[index]);
-            else
+            else if (index < 0 && (- index) <= this.list.length) {
+                items.push(this.list[this.list.length + index])
+            } else {
                 items.push(null)
+            }                
         }
         return typeof indices === "number" || maxCount === 1 ? items[0] : new List<T>(items);
     }
@@ -197,17 +202,49 @@ export class List<T> {
         }
     }
 
+    addIfUnique(item: T) {
+        if (! this.contains(item)) {
+            this.add(item);
+        }
+    }
+
+    shallowCopy() {
+        let newList = [];
+        for (let item of this.list) {
+            newList.push(item);
+        }
+        return new List<T>(newList);
+    }
+
+    empty() {
+        this.list.splice(0, this.list.length);
+    }
+
     replaceAtIndex(index: number, item:T): void {
         this.list[index] = item;
+    }
+
+    toObj() {
+        let objs = [];
+        for (let item of this.list) {
+            objs.push(item.toObj())            
+        }
+        return objs
     }
 
 }
 
 // let b = new List<any>([{ id: 5, name: "Bob", age: 20 }, { id: 7, name: "Sam", age: 19 }, { id: 3, name: "Lucy", age: 20 }]);
-// // b.add({id: 2, name: "Luke", age: 18});
-// b.add([{ id: 9, name: "John", age: 19 }]);
-// b.add(b);
-// // console.log(b);
+// // // b.add({id: 2, name: "Luke", age: 18});
+// // b.add([{ id: 9, name: "John", age: 19 }]);
+// // b.add(b);
+// console.log(b);
+// // console.log(b.getByIndex([0, -2, -1]));
+// let c = b.shallowCopy();
+// console.log(c);
+// c.replaceAtIndex(0, {id: 100, name: 'Reece', age: 25});
+// console.log(c);
+// console.log(b);
 // // console.log(b.getIndicesFromFieldValue("id", 7))
 // // console.log(b.getIndicesFromFieldValue("name", "Lucy"));
 // // console.log(b.getIndicesFromFieldValue("age", 20, 2));
