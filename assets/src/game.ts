@@ -61,8 +61,6 @@ export class Game extends Base {
         })
     }
 
-
-
     getOppositeTeam(team: number): number {
         return 1 - team
     }
