@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
-const player_1 = require("./player");
+// import { Player, testPlayers } from "./player";
+const Player = require("./player");
 const list_1 = require("./list");
 class Team extends base_1.Base {
     constructor({ id = undefined, created = undefined, lastUpdated = undefined, played = 0, won = 0, players }) {
@@ -31,7 +32,13 @@ class Team extends base_1.Base {
 }
 exports.Team = Team;
 // // console.log("D")
-let testPlayersList = new list_1.List(player_1.testPlayers);
+let testPlayer1 = new Player({ name: 'A 1' });
+let testPlayer2 = new Player({ name: 'B 2' });
+let testPlayer3 = new Player({ name: 'C 3' });
+let testPlayer4 = new Player({ name: 'D 4' });
+let testPlayer5 = new Player({ name: 'E 5' });
+let testPlayers = [testPlayer1, testPlayer2, testPlayer3, testPlayer4, testPlayer5];
+let testPlayersList = new list_1.List(testPlayers);
 exports.testTeams = [
     new Team({ players: testPlayersList.getByIndex([0, 1]) }),
     new Team({ players: testPlayersList.getByIndex([2, 3]) })

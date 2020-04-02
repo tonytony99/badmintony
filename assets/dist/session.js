@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const player_1 = require("./player");
+// import { Player, testPlayers } from "./player";
 const list_1 = require("./list");
 const team_1 = require("./team");
-const match_1 = require("./match");
+// import { Match, testMatches } from "./match";
+const Player = require("./player");
+const Match = require("./match");
 const timable_1 = require("./timable");
 class Session extends timable_1.Timable {
     // public proposedPlayer: Player;
@@ -17,7 +19,7 @@ class Session extends timable_1.Timable {
     static fromObj(obj) {
         let players = new list_1.List([]);
         for (let player of obj['players']) {
-            players.add(player_1.Player.fromObj(player));
+            players.add(Player.fromObj(player));
         }
         let teams = new list_1.List([]);
         for (let team of obj['teams']) {
@@ -25,7 +27,7 @@ class Session extends timable_1.Timable {
         }
         let matches = new list_1.List([]);
         for (let match of obj['matches']) {
-            matches.add(match_1.Match.fromObj(match, players, teams));
+            matches.add(Match.fromObj(match, players, teams));
         }
         obj['players'] = players;
         obj['teams'] = teams;
@@ -84,7 +86,17 @@ class Session extends timable_1.Timable {
     }
 }
 exports.Session = Session;
-let testSession = new Session({ players: new list_1.List(player_1.testPlayers), teams: new list_1.List(team_1.testTeams), matches: new list_1.List(match_1.testMatches) });
+let testPlayer1 = new Player({ name: 'A 1' });
+let testPlayer2 = new Player({ name: 'B 2' });
+let testPlayer3 = new Player({ name: 'C 3' });
+let testPlayer4 = new Player({ name: 'D 4' });
+let testPlayer5 = new Player({ name: 'E 5' });
+let testPlayers = [testPlayer1, testPlayer2, testPlayer3, testPlayer4, testPlayer5];
+let testPlayersList = new list_1.List(testPlayers);
+let testTeamsList = new list_1.List([team_1.testTeams[0], team_1.testTeams[1]]);
+let testMatch = new Match({ teams: testTeamsList });
+let testMatches = new list_1.List([testMatch]);
+let testSession = new Session({ players: new list_1.List(testPlayers), teams: new list_1.List(team_1.testTeams), matches: testMatches });
 testSession.begin();
 // console.log(testSession.matches.getByIndex(0).teams.getByIndex(0).players);
 console.log(testSession);

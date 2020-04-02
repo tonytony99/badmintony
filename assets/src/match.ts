@@ -1,11 +1,15 @@
 import { Base } from "./base";
-import { Player, testPlayers } from "./player";
+// import { Player, testPlayers } from "./player";
+// import Player = require("./player");
+import { Player } from "./player";
 import { List } from "./list";
 import { Team, testTeams } from "./team";
 import { Game } from "./game";
 import { Timable } from "./timable";
 
-export class Match extends Timable {
+
+
+class Match extends Timable {
 
     public score: number[];
     public winner: number;
@@ -144,6 +148,8 @@ export class Match extends Timable {
 
 }
 
+export = Match;
+
 let testTeamsList = new List<Team>([testTeams[0], testTeams[1]]);
 let testMatch = new Match({ teams: testTeamsList });
 testMatch.begin();
@@ -155,7 +161,7 @@ for (let i = 0; i < 100000; i ++) {
 // console.log("------------------------------");
 // console.log(Match.fromObj(testMatch.toObj(), new List<Player>(testPlayers)));
 
-export const testMatches = [testMatch];
+// export const testMatches = [testMatch];
 
 // // console.log(testMatch.toObj());
 // console.log(testMatch.toString());

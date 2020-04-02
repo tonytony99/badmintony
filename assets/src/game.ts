@@ -1,5 +1,8 @@
 import { Base } from "./base";
-import { Player, testPlayers } from "./player";
+// import { Player, testPlayers } from "./player";
+// import Player = require("./player");
+import { Player } from "./player";
+
 import { List } from "./list";
 import { Team } from "./team";
 
@@ -138,15 +141,15 @@ export class Game extends Base {
 }
 
 
-let players = new List<Player>(testPlayers);
-export const testGame = new Game(
-    {
-        court: [
-            players.getByIndex([0, 1]),
-            players.getByIndex([2, 3]),
-        ]
-    }
-)
+// let players = new List<Player>(testPlayers);
+// export const testGame = new Game(
+//     {
+//         court: [
+//             players.getByIndex([0, 1]),
+//             players.getByIndex([2, 3]),
+//         ]
+//     }
+// )
 
 
 // console.log(game.toString());

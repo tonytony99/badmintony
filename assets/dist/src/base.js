@@ -1,11 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Base {
-    public id: number;
-    public created: Date;
-    public lastUpdated: Date;
-
-    constructor({ id = Math.floor(Math.random() * 10 ** 8), created = new Date(), lastUpdated = new Date() }) {
+    constructor({ id = Math.floor(Math.random() * Math.pow(10, 8)), created = new Date(), lastUpdated = new Date() }) {
         this.id = id;
-
         if (typeof created === "string" || typeof created === "number")
             this.created = new Date(created);
         else
@@ -15,14 +12,12 @@ class Base {
         else
             this.lastUpdated = lastUpdated;
     }
-
     toObj() {
         let obj = { id: this.id };
         for (let dateField of ['created', 'lastUpdated']) {
             obj[dateField] = this[dateField].toISOString();
         }
-        return obj
+        return obj;
     }
 }
-
-export { Base };
+exports.Base = Base;
