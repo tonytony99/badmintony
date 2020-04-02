@@ -1,0 +1,12 @@
+{
+  "name": "badmintony",
+  "version": "1.0.0",
+  "description": "badminton scoreboard app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "devDependencies": {
+    "jest": "^25.2.6"
+  }
+}
