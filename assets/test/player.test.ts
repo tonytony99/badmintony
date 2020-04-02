@@ -1,5 +1,4 @@
 import { Player } from "../src/player";
-import { testTeams } from "../src/team";
 
 let testPlayer = new Player({ name: 'Tom' });
 
@@ -27,6 +26,7 @@ test('should not set an invalid name', () => {
 });
 
 test('fromObj(toObj) should equal original', () => {
+    expect(Player.fromObj(testPlayer.toObj())).toMatchObject(testPlayer);
     testPlayer.won++;
     testPlayer.played += 5;
     expect(Player.fromObj(testPlayer.toObj())).toMatchObject(testPlayer);
